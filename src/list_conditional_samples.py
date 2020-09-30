@@ -72,7 +72,7 @@ def interact_model(
         saver.restore(sess, ckpt)
 
         files_dir = os.path.expanduser(os.path.expandvars(files_dir))
-        files = [f for f in os.path.listdir(files_dir) if os.path.isfile(join(files_dir, f))]
+        files = [f for f in os.listdir(files_dir) if os.path.isfile(join(files_dir, f))]
         for fname in files:
             with open(fname) as fp:
                 lines = fp.read().splitlines()
