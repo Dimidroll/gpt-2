@@ -74,11 +74,13 @@ def interact_model(
         files_dir = os.path.expanduser(os.path.expandvars(files_dir))
         files = [f for f in os.listdir(files_dir) if os.path.isfile(os.path.join(files_dir, f))]
         print(files)
+        # for fname in files:
+        #     fname = os.path.expanduser(os.path.expandvars(fname))
+        #     print(fname)
+        # print(files)
         for fname in files:
             fname = os.path.expanduser(os.path.expandvars(fname))
             print(fname)
-        print(files)
-        for fname in files:
             with open(fname) as fp:
                 lines = fp.read().splitlines()
 
