@@ -6,7 +6,6 @@ import os
 import numpy as np
 import tensorflow as tf
 import time
-from google.colab import files
 
 import model, sample, encoder
 
@@ -20,6 +19,7 @@ def interact_model(
     top_k=0,
     top_p=1,
     models_dir='models',
+    files_dir='files'
 ):
     """
     Interactively run the model
@@ -71,9 +71,9 @@ def interact_model(
         ckpt = tf.train.latest_checkpoint(os.path.join(models_dir, model_name))
         saver.restore(sess, ckpt)
 
-        uploaded = files.upload()
-        # fname = 'lines.txt'
-        for fname in uploaded.keys():
+        files_dir = os.path.expanduser(os.path.expandvars(files_dir))
+        files = [f for f in os.path.listdir(files_dir) if os.path.isfile(join(files_dir, f))]
+        for fname in files:
             with open(fname) as fp:
                 lines = fp.read().splitlines()
 
